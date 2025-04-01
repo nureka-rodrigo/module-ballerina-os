@@ -27,7 +27,7 @@ public class Process {
     # int|os:Error exitCode = process.waitForExit();
     # ```
     #
-    # + return - Returns the exit code for the process, or else an `Error` if a failure occurs
+    # + return - The exit code of the process if it exits successfully, or an Error
     public isolated function waitForExit() returns int|Error {
         return nativeWaitForExit(self);
     }
