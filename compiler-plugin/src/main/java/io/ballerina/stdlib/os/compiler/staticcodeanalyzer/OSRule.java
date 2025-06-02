@@ -18,35 +18,20 @@
 
 package io.ballerina.stdlib.os.compiler.staticcodeanalyzer;
 
-import io.ballerina.scan.Rule;
-
-import static io.ballerina.scan.RuleKind.VULNERABILITY;
-import static io.ballerina.stdlib.os.compiler.staticcodeanalyzer.RuleFactory.createRule;
-
 /**
  * Represents static code rules specific to the Ballerina OS package.
  */
 public enum OSRule {
-    AVOID_UNSANITIZED_CMD_ARGS(createRule(1, "Avoid constructing system command arguments from user " +
-            "input without proper sanitization", VULNERABILITY));
+    AVOID_UNSANITIZED_CMD_ARGS(1),
+    AVOID_UNSANITIZED_ENV_VARS(2);
 
-    private final Rule rule;
+    private final int id;
 
-    OSRule(Rule rule) {
-        this.rule = rule;
+    OSRule(int id) {
+        this.id = id;
     }
 
     public int getId() {
-        return this.rule.numericId();
-    }
-
-    public Rule getRule() {
-        return this.rule;
-    }
-
-    @Override
-    public String toString() {
-        return "{\"id\":" + this.getId() + ", \"kind\":\"" + this.rule.kind() + "\"," +
-                " \"description\" : \"" + this.rule.description() + "\"}";
+        return this.id;
     }
 }
