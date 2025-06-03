@@ -98,7 +98,7 @@ public class OSCommandInjectionAnalyzer implements AnalysisTask<SyntaxNodeAnalys
 
         if (containsUserControlledInput(functionCall.arguments(), context)) {
             Location location = functionCall.location();
-            this.reporter.reportIssue(document, location, AVOID_UNSANITIZED_CMD_ARGS.getId());
+            this.reporter.reportIssue(document, location, AVOID_UNSANITIZED_CMD_ARGS.numericId());
         }
     }
 

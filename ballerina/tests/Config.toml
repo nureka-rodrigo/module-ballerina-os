@@ -1,2 +1,2 @@
 [os]
-bal_exec_path = "@exec.path@"
+bal_exec_path = "C:\\Users\\nureka\\Documents\\GitHub\\module-ballerina-os\\target\\ballerina-runtime\\bin\\bal.bat"

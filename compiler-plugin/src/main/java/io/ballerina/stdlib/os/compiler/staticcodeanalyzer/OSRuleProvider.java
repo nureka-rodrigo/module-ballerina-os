@@ -19,37 +19,20 @@
 package io.ballerina.stdlib.os.compiler.staticcodeanalyzer;
 
 import io.ballerina.scan.Rule;
-import io.ballerina.scan.RuleKind;
+import io.ballerina.scan.RuleProvider;
 
+import java.util.List;
 
-class RuleImpl implements Rule {
-    private final int id;
-    private final String description;
-    private final RuleKind kind;
-
-    RuleImpl(int id, String description, RuleKind kind) {
-        this.id = id;
-        this.description = description;
-        this.kind = kind;
+/**
+ * Service provider for Ballerina OS static code analysis rules.
+ */
+public class OSRuleProvider implements RuleProvider {
+    public OSRuleProvider() {
+        // public no-arg constructor
     }
 
     @Override
-    public String id() {
-        return Integer.toString(this.id);
-    }
-
-    @Override
-    public int numericId() {
-        return this.id;
-    }
-
-    @Override
-    public String description() {
-        return this.description;
-    }
-
-    @Override
-    public RuleKind kind() {
-        return this.kind;
+    public Iterable<Rule> getRules() {
+        return List.of(OSRule.values());
     }
 }

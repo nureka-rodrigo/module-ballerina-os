@@ -19,34 +19,44 @@
 package io.ballerina.stdlib.os.compiler.staticcodeanalyzer;
 
 import io.ballerina.scan.Rule;
+import io.ballerina.scan.RuleKind;
 
 import static io.ballerina.scan.RuleKind.VULNERABILITY;
-import static io.ballerina.stdlib.os.compiler.staticcodeanalyzer.RuleFactory.createRule;
 
 /**
  * Represents static code rules specific to the Ballerina OS package.
  */
-public enum OSRule {
-    AVOID_UNSANITIZED_CMD_ARGS(createRule(1, "Avoid constructing system command arguments from user " +
-            "input without proper sanitization", VULNERABILITY));
+public enum OSRule implements Rule {
+    AVOID_UNSANITIZED_CMD_ARGS(1, "Avoid constructing system command arguments from user " +
+            "input without proper sanitization", VULNERABILITY);
 
-    private final Rule rule;
+    private final int id;
+    private final String description;
+    private final RuleKind kind;
 
-    OSRule(Rule rule) {
-        this.rule = rule;
-    }
-
-    public int getId() {
-        return this.rule.numericId();
-    }
-
-    public Rule getRule() {
-        return this.rule;
+    OSRule(int id, String description, RuleKind kind) {
+        this.id = id;
+        this.description = description;
+        this.kind = kind;
     }
 
     @Override
-    public String toString() {
-        return "{\"id\":" + this.getId() + ", \"kind\":\"" + this.rule.kind() + "\"," +
-                " \"description\" : \"" + this.rule.description() + "\"}";
+    public String id() {
+        return "";
+    }
+
+    @Override
+    public int numericId() {
+        return id;
+    }
+
+    @Override
+    public String description() {
+        return description;
+    }
+
+    @Override
+    public RuleKind kind() {
+        return kind;
     }
 }
