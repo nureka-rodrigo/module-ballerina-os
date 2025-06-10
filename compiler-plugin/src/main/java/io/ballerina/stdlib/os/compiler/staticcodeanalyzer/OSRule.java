@@ -28,7 +28,9 @@ import static io.ballerina.scan.RuleKind.VULNERABILITY;
  */
 public enum OSRule implements Rule {
     AVOID_UNSANITIZED_CMD_ARGS(1, "Avoid constructing system command arguments from user " +
-            "input without proper sanitization", VULNERABILITY);
+            "input without proper sanitization", VULNERABILITY),
+    AVOID_UNSANITIZED_ENV_VARS(2, "Environment variables should not be defined from untrusted input",
+            VULNERABILITY);
 
     private final int id;
     private final String description;
