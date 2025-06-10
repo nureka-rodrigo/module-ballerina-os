@@ -1,1 +1,1 @@
-io.ballerina.stdlib.os.compiler.staticcodeanalyzer.OSRuleProvider
+io.ballerina.stdlib.os.compiler.staticcodeanalyzer.OSStaticCodeAnalyzer

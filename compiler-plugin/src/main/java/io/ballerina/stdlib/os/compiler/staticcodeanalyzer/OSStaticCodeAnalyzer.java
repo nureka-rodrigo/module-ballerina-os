@@ -21,6 +21,8 @@ package io.ballerina.stdlib.os.compiler.staticcodeanalyzer;
 import io.ballerina.projects.plugins.CodeAnalysisContext;
 import io.ballerina.projects.plugins.CodeAnalyzer;
 import io.ballerina.scan.Reporter;
+import io.ballerina.scan.Rule;
+import io.ballerina.scan.RuleProvider;
 
 import java.util.List;
 
@@ -29,8 +31,12 @@ import static io.ballerina.compiler.syntax.tree.SyntaxKind.FUNCTION_CALL;
 /**
  * The static code analyzer implementation for Ballerina OS package.
  */
-public class OSStaticCodeAnalyzer extends CodeAnalyzer {
-    private final Reporter reporter;
+public class OSStaticCodeAnalyzer extends CodeAnalyzer implements RuleProvider {
+    private Reporter reporter;
+
+    public OSStaticCodeAnalyzer() {
+        // Default constructor for service loading
+    }
 
     public OSStaticCodeAnalyzer(Reporter reporter) {
         this.reporter = reporter;
@@ -39,5 +45,10 @@ public class OSStaticCodeAnalyzer extends CodeAnalyzer {
     @Override
     public void init(CodeAnalysisContext analysisContext) {
         analysisContext.addSyntaxNodeAnalysisTask(new OSCommandInjectionAnalyzer(reporter), List.of(FUNCTION_CALL));
+    }
+
+    @Override
+    public Iterable<Rule> getRules() {
+        return List.of(OSRule.values());
     }
 }
