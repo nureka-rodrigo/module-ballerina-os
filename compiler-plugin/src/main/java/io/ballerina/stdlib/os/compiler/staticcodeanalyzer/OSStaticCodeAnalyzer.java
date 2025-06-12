@@ -19,10 +19,9 @@
 package io.ballerina.stdlib.os.compiler.staticcodeanalyzer;
 
 import io.ballerina.projects.plugins.CodeAnalysisContext;
-import io.ballerina.projects.plugins.CodeAnalyzer;
+import io.ballerina.scan.ExternalCodeAnalyzer;
 import io.ballerina.scan.Reporter;
 import io.ballerina.scan.Rule;
-import io.ballerina.scan.RuleProvider;
 
 import java.util.List;
 
@@ -31,7 +30,7 @@ import static io.ballerina.compiler.syntax.tree.SyntaxKind.FUNCTION_CALL;
 /**
  * The static code analyzer implementation for Ballerina OS package.
  */
-public class OSStaticCodeAnalyzer extends CodeAnalyzer implements RuleProvider {
+public class OSStaticCodeAnalyzer extends ExternalCodeAnalyzer {
     private Reporter reporter;
 
     public OSStaticCodeAnalyzer() {
